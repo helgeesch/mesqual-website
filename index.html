@@ -10,165 +10,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <nav class="main-nav">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="#00A98F"/><path d="M50 15L79.37 31.25V68.75L50 85L20.63 68.75V31.25L50 15Z" fill="white"/></svg>
+                <span>MESQUAL</span>
+            </a>
+            <div class="nav-links">
+                <a href="#use-cases">Use Cases</a>
+                <a href="#modules">Modules</a>
+                <a href="#">Docs</a>
+                <a href="#">Get Started</a>
+            </div>
+        </div>
+    </nav>
 
     <header class="hero">
         <div class="container">
-            <img src="https://raw.githubusercontent.com/helgeesch/mesqual/main/assets/logo_no_text_no_bg.svg" alt="MESQUAL Logo" class="hero-logo">
             <h1>The Pythonic framework for energy scenario analysis</h1>
             <p class="subtitle">A modular library for comparing energy market scenarios with powerful quantitative and qualitative analysis tools.</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/helgeesch/mesqual-vanilla-studies" class="button button-primary">Get Started</a>
-                <a href="#" class="button button-secondary">Documentation</a>
-            </div>
-
-            <div class="code-window">
-                <div class="code-tabs">
-                    <button class="tab-button active" onclick="showTab('pypsa')">PyPSA Interface</button>
-                    <button class="tab-button" onclick="showTab('plexos')">PLEXOS Interface</button>
-                    <button class="tab-button" onclick="showTab('kpi')">KPI Calculation</button>
-                </div>
-                <div class="code-content">
-                    <pre id="pypsa" class="code-block active"><code class="language-python">
-<span class="keyword">import</span> pypsa
-<span class="keyword">from</span> mesqual <span class="keyword">import</span> StudyManager
-<span class="keyword">from</span> mesqual_pypsa <span class="keyword">import</span> PyPSADataset
-
-<span class="comment"># Initialize study with multiple scenarios</span>
-study = StudyManager.factory_from_scenarios(
-    scenarios=[
-        PyPSADataset(pypsa.Network(<span class="string">'base.nc'</span>), name=<span class="string">'base'</span>),
-        PyPSADataset(pypsa.Network(<span class="string">'scen1.nc'</span>), name=<span class="string">'scen1'</span>),
-    ],
-    comparisons=[(<span class="string">"scen1"</span>, <span class="string">"base"</span>)],
-)
-
-<span class="comment"># Access data for all scenarios</span>
-df_prices = study.scen.fetch(<span class="string">"buses_t.marginal_price"</span>)
-
-<span class="comment"># Access comparison data (deltas)</span>
-df_price_deltas = study.comp.fetch(<span class="string">"buses_t.marginal_price"</span>)
-                    </code></pre>
-                    <pre id="plexos" class="code-block"><code class="language-python">
-<span class="keyword">from</span> mesqual_plexos <span class="keyword">import</span> PlexosDataset
-
-<span class="comment"># Initialize dataset from PLEXOS output</span>
-dataset = PlexosDataset.from_xml_and_solution_zip(
-   model=<span class="string">'path/to/my_plexos_model.xml'</span>,
-   solution=<span class="string">'path/to/my_plexos_solution.zip'</span>,
-   name=<span class="string">'my_plexos_run'</span>,
-)
-
-<span class="comment"># Fetch data as a DataFrame</span>
-df_prices = dataset.fetch(<span class="string">"ST.Node.Price"</span>)
-df_nodes = dataset.fetch(<span class="string">"Node.Model"</span>)
-                    </code></pre>
-                     <pre id="kpi" class="code-block"><code class="language-python">
-<span class="keyword">from</span> mesqual.kpi <span class="keyword">import</span> KPICalculator
-<span class="keyword">from</span> mesqual.kpi.library <span class="keyword">import</span> system_cost
-
-<span class="comment"># Get a dataset from your study</span>
-base_scen = study.scen.get_dataset(<span class="string">'base'</span>)
-
-<span class="comment"># Initialize KPI Calculator</span>
-kpi_calc = KPICalculator(dataset=base_scen)
-
-<span class="comment"># Calculate a pre-defined KPI</span>
-total_cost = kpi_calc.calculate_kpi(system_cost)
-
-print(total_cost)
-<span class="comment"># &gt; 123456789.12 EUR</span>
-                    </code></pre>
-                </div>
+            <div class="hero-cta">
+                 <a href="#" class="button button-primary button-large">Try now in Colab</a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="section">
+        <section class="section interactive-demo">
             <div class="container">
-                <div class="section-header">
-                    <h2>What is MESQUAL?</h2>
-                    <p>MESQUAL provides a unified interface for handling energy systems data across any modeling platform. It's designed for efficient data handling in multi-scenario studies, featuring built-in comparison capabilities, an extensible KPI framework, and interactive visualizations.</p>
+                <div class="split-view-container">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <p>1. Choose Study Setup</p>
+                            <div class="code-tabs" id="setup-tabs">
+                                <button class="tab-button" data-setup="pypsa">PyPSA</button>
+                                <button class="tab-button" data-setup="plexos">Plexos</button>
+                                </div>
+                        </div>
+                        <div class="code-content">
+                            <pre><code id="setup-code" class="language-python"></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                         <div class="panel-header">
+                            <p>2. Choose Processing Pipeline</p>
+                            <div class="code-tabs" id="pipeline-tabs">
+                                <button class="tab-button" data-pipeline="kpi">KPI Table</button>
+                                <button class="tab-button" data-pipeline="plot">Plotly Chart</button>
+                                <button class="tab-button" data-pipeline="map">Folium Map</button>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <pre><code id="pipeline-code" class="language-python"></code></pre>
+                        </div>
+                    </div>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Unified Interface</h3>
-                        <p>Handle data from PyPSA, PLEXOS, or custom sources with a consistent API.</p>
+
+                <div class="preview-container">
+                    <div class="panel-header">
+                        <p>3. See the Result</p>
                     </div>
-                    <div class="feature-card">
-                        <h3>Powerful Analytics</h3>
-                        <p>Use the extensible KPI framework and data transformation tools for deep insights.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Scenario Comparison</h3>
-                        <p>Natively compare scenarios to calculate deltas and analyze changes effectively.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Modular & Extensible</h3>
-                        <p>Integrate study-specific modules, custom data sources, and new variables with ease.</p>
+                    <div class="preview-content">
+                        <iframe id="preview-frame" src="about:blank" frameborder="0"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section section-highlight">
-            <div class="container-side-by-side">
-                <div class="text-content">
-                    <h3>Explore hands-on example studies</h3>
-                    <p>The `mesqual-vanilla-studies` repository demonstrates MESQUAL's capabilities through practical examples and serves as a template for organizing your own energy modeling studies.</p>
-                </div>
-                <div class="studies-cards">
-                    <div class="study-card">
-                        <h4>Study 01: Intro to MESQUAL</h4>
-                        <p>Uses a PyPSA example network to introduce the core MESQUAL modules and framework.</p>
-                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_01_intro_to_mesqual">View Study &rarr;</a>
-                    </div>
-                    <div class="study-card">
-                        <h4>Study 02: PLEXOS Example</h4>
-                        <p>Shows the platform-agnostic nature of MESQUAL using PLEXOS simulation outputs.</p>
-                         <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_02_plexos_example">View Study &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Integrates with the ecosystem</h2>
-                </div>
-                <div class="logos">
-                    <p>PyPSA</p> <p>PLEXOS</p> <p>pandas</p> <p>Plotly</p> </div>
-            </div>
-        </section>
 
-        <section class="section">
-             <div class="container">
-                <div class="section-header">
-                    <h2>Join our community</h2>
-                    <p>MESQUAL is an open-source project. Get involved by contributing code, reporting issues, or joining the discussion.</p>
-                </div>
-                <div class="community-links">
-                     <div class="community-card">
-                        <h3>GitHub Repository</h3>
-                        <p>Contribute code, file issues, and track project progress.</p>
-                        <a href="https://github.com/helgeesch/mesqual" class="button button-secondary">Go to GitHub</a>
-                    </div>
-                     <div class="community-card">
-                        <h3>Example Studies</h3>
-                        <p>See MESQUAL in action and use it as a template for your work.</p>
-                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies" class="button button-secondary">View Examples</a>
-                    </div>
-                     <div class="community-card">
-                        <h3>Google Colab</h3>
-                        <p>Try MESQUAL directly in your browser without any installation.</p>
-                        <a href="#" class="button button-secondary">Launch Colab</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
+        </main>
 
     <footer>
         <div class="container">
@@ -176,16 +88,6 @@ print(total_cost)
         </div>
     </footer>
 
-    <script>
-        function showTab(tabName) {
-            const content = document.querySelectorAll('.code-block');
-            content.forEach(c => c.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(b => b.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
