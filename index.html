@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <nav class="main-nav">
         <div class="container">
             <a href="#" class="nav-logo">
-                <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="#00A98F"/><path d="M50 15L79.37 31.25V68.75L50 85L20.63 68.75V31.25L50 15Z" fill="white"/></svg>
+                <img src="https://raw.githubusercontent.com/helgeesch/mesqual/18fe3fc20bace115a116555b2872d57925698e48/assets/logo-turq.svg" alt="MESQUAL Logo" class="logo-img">
                 <span>MESQUAL</span>
             </a>
             <div class="nav-links">
                 <a href="#use-cases">Use Cases</a>
                 <a href="#modules">Modules</a>
-                <a href="#">Docs</a>
-                <a href="#">Get Started</a>
+                <a href="#example-studies">Example Studies</a>
+                <a href="https://docs.mesqual.io" target="_blank">Docs</a>
+                <a href="https://github.com/helgeesch/mesqual" target="_blank">Get Started</a>
             </div>
         </div>
     </nav>
@@ -30,57 +32,189 @@
             <h1>The Pythonic framework for energy scenario analysis</h1>
             <p class="subtitle">A modular library for comparing energy market scenarios with powerful quantitative and qualitative analysis tools.</p>
             <div class="hero-cta">
-                 <a href="#" class="button button-primary button-large">Try now in Colab</a>
+                 <a href="#" class="button button-primary button-large button-with-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM11.2318 17.5255C10.9469 17.5255 10.712 17.29 10.712 16.9745V7.02551C10.712 6.71 10.9469 6.47451 11.2318 6.47451C11.5167 6.47451 11.7516 6.71 11.7516 7.02551V16.9745C11.7516 17.29 11.5167 17.5255 11.2318 17.5255ZM15.7551 14.2882C15.4702 14.2882 15.2353 14.0527 15.2353 13.7372V10.2628C15.2353 9.94726 15.4702 9.71178 15.7551 9.71178C16.04 9.71178 16.2749 9.94726 16.2749 10.2628V13.7372C16.2749 14.0527 16.04 14.2882 15.7551 14.2882ZM6.70863 14.2882C6.42373 14.2882 6.18884 14.0527 6.18884 13.7372V10.2628C6.18884 9.94726 6.42373 9.71178 6.70863 9.71178C6.99352 9.71178 7.22841 9.94726 7.22841 10.2628V13.7372C7.22841 14.0527 6.99352 14.2882 6.70863 14.2882Z"/></svg>
+                    Try now in Colab
+                </a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="section interactive-demo">
+        <section id="use-cases" class="section interactive-demo">
             <div class="container">
-                <div class="split-view-container">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <p>1. Choose Study Setup</p>
-                            <div class="code-tabs" id="setup-tabs">
-                                <button class="tab-button" data-setup="pypsa">PyPSA</button>
+                <div class="code-viewer-container">
+                    <!-- Left and Right Panes -->
+                    <div class="code-panes">
+                        <!-- Left Pane -->
+                        <div class="code-pane">
+                            <div class="tabs" id="setup-tabs">
+                                <button class="tab-button active" data-setup="pypsa">PyPSA</button>
                                 <button class="tab-button" data-setup="plexos">Plexos</button>
-                                </div>
+                                <!-- Add more setup tabs here -->
+                            </div>
+                            <div class="code-content">
+                                <pre><code id="setup-code" class="language-python"></code></pre>
+                            </div>
                         </div>
-                        <div class="code-content">
-                            <pre><code id="setup-code" class="language-python"></code></pre>
-                        </div>
-                    </div>
-
-                    <div class="panel">
-                         <div class="panel-header">
-                            <p>2. Choose Processing Pipeline</p>
-                            <div class="code-tabs" id="pipeline-tabs">
-                                <button class="tab-button" data-pipeline="kpi">KPI Table</button>
+                        <!-- Right Pane -->
+                        <div class="code-pane">
+                            <div class="tabs" id="pipeline-tabs">
+                                <button class="tab-button active" data-pipeline="kpi">KPI Table</button>
                                 <button class="tab-button" data-pipeline="plot">Plotly Chart</button>
                                 <button class="tab-button" data-pipeline="map">Folium Map</button>
                             </div>
-                        </div>
-                        <div class="code-content">
-                            <pre><code id="pipeline-code" class="language-python"></code></pre>
+                            <div class="code-content">
+                                <pre><code id="pipeline-code" class="language-python"></code></pre>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="preview-container">
-                    <div class="panel-header">
-                        <p>3. See the Result</p>
-                    </div>
-                    <div class="preview-content">
-                        <iframe id="preview-frame" src="about:blank" frameborder="0"></iframe>
+                    <!-- Preview Pane -->
+                    <div class="preview-pane">
+                        <iframe id="preview-frame" src="about:blank"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="modules" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Modules and Data Classes</h2>
+                    <p>MESQUAL gives you atomic building blocks that enable you to build up intuitive representations of real-world energy assets with expressive notation.</p>
+                </div>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-header">
+                            <i data-lucide="layout-dashboard"></i>
+                            <h3>StudyManager</h3>
+                        </div>
+                        <div class="module-classes">
+                            <code>StudyManager</code>
+                            <code>ScenarioManager</code>
+                            <code>ComparisonManager</code>
+                        </div>
+                        <p>The core orchestrator for handling multi-scenario and comparison studies.</p>
+                        <div class="module-links">
+                            <a href="#" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="#">Docs &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="module-card">
+                        <div class="module-header">
+                            <i data-lucide="database"></i>
+                            <h3>Datasets</h3>
+                        </div>
+                        <div class="module-classes">
+                            <code>PyPSADataset</code>
+                            <code>PlexosDataset</code>
+                            <code>AbstractDataset</code>
+                        </div>
+                        <p>Unified interfaces for handling data from any energy modeling platform.</p>
+                        <div class="module-links">
+                             <a href="#" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="#">Docs &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="module-card">
+                        <div class="module-header">
+                            <i data-lucide="map"></i>
+                            <h3>Folium Viz System</h3>
+                        </div>
+                        <div class="module-classes">
+                            <code>FoliumMap</code>
+                            <code>Layer</code>
+                            <code>Colorbar</code>
+                        </div>
+                        <p>Create interactive, layer-based geographical maps of your network data.</p>
+                        <div class="module-links">
+                             <a href="#" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="#">Docs &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="module-card">
+                        <div class="module-header">
+                            <i data-lucide="bar-chart-2"></i>
+                            <h3>TimeSeriesDashboard</h3>
+                        </div>
+                        <div class="module-classes">
+                            <code>PlotlyDashboard</code>
+                            <code>Trace</code>
+                        </div>
+                        <p>Build powerful, interactive time-series dashboards using Plotly.</p>
+                        <div class="module-links">
+                             <a href="#" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="#">Docs &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="module-card">
+                        <div class="module-header">
+                            <i data-lucide="blinds"></i>
+                            <h3>Energy Data Handling</h3>
+                        </div>
+                        <div class="module-classes">
+                            <code>AreaLayers</code>
+                            <code>KPICalculator</code>
+                        </div>
+                        <p>Advanced tools for topological aggregation and extensible KPI calculations.</p>
+                        <div class="module-links">
+                            <a href="#" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="#">Docs &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="example-studies" class="section section-highlight">
+            <div class="container-side-by-side">
+                <div class="text-content">
+                    <h3>Explore hands-on example studies</h3>
+                    <p>The <code>mesqual-vanilla-studies</code> repository demonstrates MESQUAL's capabilities through practical examples and serves as a template for organizing your own energy modeling studies.</p>
+                    <a href="https://github.com/helgeesch/mesqual-vanilla-studies" class="button button-secondary">View Repository</a>
+                </div>
+                <div class="studies-cards">
+                    <div class="study-card">
+                        <h4>Study 01: Intro to MESQUAL</h4>
+                        <p>Uses a PyPSA example network to introduce the core MESQUAL modules and framework.</p>
+                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_01_intro_to_mesqual" target="_blank">View Study &rarr;</a>
+                    </div>
+                    <div class="study-card">
+                        <h4>Study 02: PLEXOS Example</h4>
+                        <p>Shows the platform-agnostic nature of MESQUAL using PLEXOS simulation outputs.</p>
+                         <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_02_plexos_example" target="_blank">View Study &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        </main>
+        <section class="section">
+            <div class="container">
+                 <div class="section-header">
+                    <h2>Other Open-Source Projects</h2>
+                    <p>Explore other libraries and tools from the MESQUAL ecosystem.</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <i data-lucide="file-code-2"></i>
+                        <h4>energy-repset</h4>
+                        <p>A repository for representative energy system model datasets.</p>
+                    </div>
+                     <div class="project-card">
+                        <i data-lucide="anchor"></i>
+                        <h4>captain-arro</h4>
+                        <p>A tool for managing and orchestrating complex data science workflows.</p>
+                    </div>
+                     <div class="project-card">
+                        <i data-lucide="bot"></i>
+                        <h4>mesqual-agents</h4>
+                        <p>An extension for agent-based modeling within the MESQUAL framework.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <div class="container">
@@ -88,6 +222,9 @@
         </div>
     </footer>
 
+    <script>
+        lucide.createIcons();
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
