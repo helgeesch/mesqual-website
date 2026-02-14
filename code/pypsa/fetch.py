@@ -1,13 +1,14 @@
 # Fetch trade balances across all scenarios
 flag = 'countries_t.trade_balance_per_partner'
 
-# All scenarios → MultiIndex DataFrame
-df = study.scen.fetch(flag)
+print(f'All scenarios → MultiIndex DataFrame')
+print(study.scen.fetch(flag))
 
-# All comparisons (deltas) → same interface
-df_comp = study.comp.fetch(flag)
+print(f'Individual scenario')
+print(study.scen.get_dataset('base').fetch(flag))
 
-# Combined: scenarios + comparisons
-df_all = study.scen_comp.fetch(flag)
+print(f'All comparisons (deltas) → same interface')
+print(study.comp.fetch(flag))
 
-print(df.round(2))
+print(f'Combined fetch: scenarios + comparisons')
+print(study.scen_comp.fetch(flag))

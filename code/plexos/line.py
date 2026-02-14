@@ -2,7 +2,11 @@ import plotly.express as px
 from mesqual.utils.pandas_utils import flatten_df
 
 # Same data as heatmap, different visualization
-data = study.scen.fetch('countries_t.trade_balance_per_partner')
+flag = SolutionFlag(
+    Enums.Col.Countries,
+    Enums.Out.TradeBalPerPartner
+)
+data = study.scen.fetch(flag)
 data = data.xs('net_exp', level='variable', axis=1)
 data = flatten_df(data)
 

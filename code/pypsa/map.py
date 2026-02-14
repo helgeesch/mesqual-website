@@ -4,12 +4,11 @@ from mesqual import kpis
 from mesqual.visualizations import folviz, valmap
 
 # Define KPIs: mean prices per country, mean flows per border
+price_flag = 'countries_t.vol_weighted_marginal_price'
+flow_flag = 'country_borders_t.net_flow'
 kpi_defs = (
     kpis.FlagAggKPIBuilder()
-    .for_flags([
-        'countries_t.vol_weighted_marginal_price',
-        'country_borders_t.net_flow'
-    ])
+    .for_flags([price_flag, flow_flag])
     .with_aggregation(kpis.Aggregations.Mean)
     .for_all_objects().build()
 )
@@ -39,6 +38,3 @@ map_gen = MapGenerator()
 map_gen.add_legends_to_map(m)
 map_gen.add_non_physical_interconnector_cables(study, m)
 map_gen.generate_and_add_feature_groups_to_map(study, m,show='first')
-
-import geopandas as gpd
-gpd.GeoDataFrame(geometry=)
