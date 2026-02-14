@@ -155,7 +155,9 @@ h1 {
     padding: 10px 15px;
     background: #2a2a2a;
     display: flex;
+    align-items: center;
     gap: 8px;
+    min-height: 46px;
 }
 .tab-button {
     background: none;
@@ -163,10 +165,11 @@ h1 {
     color: #888;
     padding: 6px 12px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: var(--font-family);
     border-radius: 6px;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 .tab-button.active {
     color: white;
@@ -181,6 +184,21 @@ h1 {
     height: 300px;
     overflow: auto;
 }
+.console-header {
+    background: #2d2d2d;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    color: #888;
+    font-size: 12px;
+}
+.console-body {
+    background: var(--code-bg);
+    padding: 15px;
+    overflow: auto;
+    flex-grow: 1;
+}
 .code-content pre, .code-content code {
     margin: 0;
     height: 100%;
@@ -190,14 +208,19 @@ h1 {
     white-space: pre-wrap;
     color: #d4d4d4;
 }
+.code-content pre code .comment {
+    color: #858585;
+    font-style: italic;
+}
 .preview-pane {
-    height: 450px;
+    height: 500px;
     background-color: #fff;
+    overflow: hidden;
 }
 .preview-pane iframe {
-    width: 100%;
-    height: 100%;
     border: none;
+    transform-origin: 0 0;
+    /* scale set dynamically per pipeline tab via JS */
 }
 /* Python Syntax Highlighting */
 code .keyword { color: #C586C0; }
@@ -286,6 +309,181 @@ code .operator { color: #d4d4d4; }
     font-weight: 600;
 }
 
+/* --- Make It Yours / Architecture Section --- */
+.arch-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+    align-items: stretch;
+}
+.arch-stack {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.arch-layer {
+    padding: 22px 28px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid transparent;
+    background: #fff;
+    position: relative;
+    transition: all 0.2s ease;
+}
+.arch-layer:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow);
+    border-color: #ccc;
+}
+.arch-study {
+    width: 84%;
+    z-index: 3;
+    border-left-color: var(--primary-color);
+    box-shadow: 0 6px 20px rgba(0, 169, 143, 0.12);
+}
+.arch-platform {
+    width: 92%;
+    z-index: 2;
+    margin-top: -10px;
+    border-left-color: #7dd3c7;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.arch-core {
+    width: 100%;
+    z-index: 1;
+    margin-top: -10px;
+    border-left-color: #b2ece3;
+    background: #f8fffe;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+.arch-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    color: var(--heading-color);
+}
+.arch-label i {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+}
+.arch-layer p {
+    font-size: 0.9rem;
+    margin: 0 0 10px;
+}
+.arch-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.arch-badges code {
+    background: var(--section-highlight-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+
+/* Vertical .fetch(flag) line */
+.arch-api-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 130px;
+}
+.arch-api-label code {
+    background: var(--primary-color);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.arch-api-arrow {
+    width: 2px;
+    flex: 1;
+    min-height: 40px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--primary-color) 0, var(--primary-color) 8px,
+        transparent 8px, transparent 16px
+    );
+    margin: 10px 0;
+}
+.arch-api-sublabel {
+    font-size: 0.75rem;
+    color: var(--text-color-light);
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Extension cards */
+.extension-heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.3rem;
+}
+.extension-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 25px;
+}
+.extension-card {
+    min-width: 0;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+.extension-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow);
+    border-color: #ccc;
+}
+.extension-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.extension-card-header i {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+}
+.extension-card-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.extension-card > p {
+    font-size: 0.9rem;
+    margin: 0 0 15px;
+    flex: 1;
+}
+.extension-code {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 14px;
+    overflow-x: auto;
+}
+.extension-code pre,
+.extension-code code {
+    margin: 0;
+    font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    white-space: pre;
+}
+
 /* --- Example Studies Section --- */
 .container-side-by-side {
     display: flex;
@@ -344,6 +542,22 @@ code .operator { color: #d4d4d4; }
     font-size: 1.1rem;
 }
 
+/* --- GitHub Source Icon --- */
+.github-source-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    color: #666;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+.github-source-icon:hover {
+    color: #fff;
+}
+
 /* --- Footer --- */
 footer {
     padding: 40px 0;
@@ -352,13 +566,63 @@ footer {
     color: var(--text-color-light);
     font-size: 0.9rem;
 }
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.footer-link {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.footer-link:hover {
+    color: var(--primary-color);
+}
+.footer-icon-link {
+    display: inline-flex;
+    align-items: center;
+}
+.footer-icon-link svg {
+    fill: var(--text-color-light);
+    transition: fill 0.2s;
+}
+.footer-icon-link:hover svg {
+    fill: var(--primary-color);
+}
 
 /* --- Responsive --- */
 @media (max-width: 992px) {
     .modules-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-     .container-side-by-side { flex-direction: column; text-align: center; }
+    .container-side-by-side { flex-direction: column; text-align: center; }
+    .arch-container { flex-direction: column; }
+    .arch-api-line {
+        flex-direction: row;
+        min-width: auto;
+        padding: 5px 0;
+    }
+    .arch-api-arrow {
+        height: 2px;
+        width: auto;
+        min-height: 0;
+        flex: 1;
+        background: repeating-linear-gradient(
+            to right,
+            var(--primary-color) 0, var(--primary-color) 8px,
+            transparent 8px, transparent 16px
+        );
+        margin: 0 10px;
+    }
+    .arch-api-sublabel br { display: none; }
+    .extension-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,44 @@
+import folium
+from captain_arro import ArrowTypeEnum
+from mesqual import kpis
+from mesqual.visualizations import folviz, valmap
+
+# Define KPIs: mean prices per country, mean flows per border
+kpi_defs = (
+    kpis.FlagAggKPIBuilder()
+    .for_flags([
+        'countries_t.vol_weighted_marginal_price',
+        'country_borders_t.net_flow'
+    ])
+    .with_aggregation(kpis.Aggregations.Mean)
+    .for_all_objects().build()
+)
+study.scen.add_kpis(kpi_defs)
+
+# Colored country areas for prices
+price_cs = valmap.SegmentedContinuousColorscale(
+    segments={(0, 100): theme.colors.sequential.default}
+)
+area_gen = folviz.AreaGenerator(folviz.AreaFeatureResolver(
+    fill_color=folviz.PropertyMapper.from_kpi_value(price_cs),
+    fill_opacity=1.0,
+    border_color='#ffffff',
+    tooltip=True,
+))
+
+# Animated flow arrows for cross-border trade
+arrow_gen = folviz.ArrowIconGenerator(folviz.ArrowIconFeatureResolver(
+    arrow_type=ArrowTypeEnum.MOVING_FLOW_ARROW,
+    color='#101010',
+    num_arrows=4,
+    speed_in_duration_seconds=4
+))
+
+# Build map — one togglable layer per scenario
+map_gen = MapGenerator()
+map_gen.add_legends_to_map(m)
+map_gen.add_non_physical_interconnector_cables(study, m)
+map_gen.generate_and_add_feature_groups_to_map(study, m,show='first')
+
+import geopandas as gpd
+gpd.GeoDataFrame(geometry=)

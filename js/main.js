@@ -2,7 +2,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // State management
     const state = {
         setup: 'pypsa',
-        pipeline: 'kpi',
+        pipeline: 'fetch',
+    };
+
+    // GitHub source mapping
+    const githubBaseUrl = 'https://github.com/helgeesch/mesqual-vanilla-studies/blob/main/studies/study_04_pypsa_eur_example/scripts/b_post_processing/';
+    const githubSourceMap = {
+        fetch: 'b_simple_fetch.py',
+        heat: 'c_trade_balance_heatmap_dashboard.py',
+        line: 'c_trade_balance_line_fig.py',
+        map: 'd_netpos_price_map.py',
+    };
+
+    // Preview zoom levels per pipeline tab
+    const previewScaleMap = {
+        fetch: 0.8,
+        heat: 0.6,
+        line: 0.6,
+        map: 0.5,
     };
 
     // DOM Elements
@@ -11,13 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const setupCodeEl = document.getElementById('setup-code');
     const pipelineCodeEl = document.getElementById('pipeline-code');
     const previewFrame = document.getElementById('preview-frame');
+    const githubLink = document.getElementById('github-source-link');
 
     // --- Core Function to Update View ---
     async function updateView() {
         // Construct file paths
-        const setupCodePath = `code/${state.setup}/setup.py`;
+        const setupCodePath = `code/${state.setup}/a_study_setup.py`;
         const pipelineCodePath = `code/${state.setup}/${state.pipeline}.py`;
-        const previewPath = `previews/${state.setup}/${state.pipeline}.html`;
+        const previewPath = `previews/${state.pipeline}.html`;
 
         try {
             // Fetch and display code snippets
@@ -29,8 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setupCodeEl.innerHTML = betterHighlight(setupCode);
             pipelineCodeEl.innerHTML = betterHighlight(pipelineCode);
 
-            // Update preview iframe
+            // Update preview iframe with per-pipeline zoom
+            const scale = previewScaleMap[state.pipeline] || 0.5;
+            previewFrame.style.transform = `scale(${scale})`;
+            previewFrame.style.width = `${100 / scale}%`;
+            previewFrame.style.height = `${100 / scale}%`;
             previewFrame.src = previewPath;
+
+            // Update GitHub source link
+            if (githubLink && githubSourceMap[state.pipeline]) {
+                githubLink.href = githubBaseUrl + githubSourceMap[state.pipeline];
+            }
 
         } catch (error) {
             console.error("Failed to load assets:", error);
@@ -69,28 +96,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function betterHighlight(code) {
         let html = code
-            .replace(/</g, "&lt;").replace(/>/g, "&gt;"); // HTML escape
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
 
-        // Comments
-        html = html.replace(/(#.*$)/gm, '<span class="comment">$1</span>');
+        // Step 1: Extract and protect comments
+        const comments = [];
+        html = html.replace(/(#.*$)/gm, (match) => {
+            comments.push(match);
+            return `###COMMENT_${comments.length - 1}###`;
+        });
 
-        // Strings (single, double, triple)
-        html = html.replace(/("(?:[^"\\]|\\.)*")|('(?:[^'\\]|\\.)*')|("""[\s\S]*?""")|('''[\s\S]*?''')/g, '<span class="string">$&</span>');
+        // Step 2: Extract and protect strings
+        const strings = [];
+        html = html.replace(/("(?:[^"\\]|\\.)*")|('(?:[^'\\]|\\.)*')|("""[\s\S]*?""")|('''[\s\S]*?''')/g, (match) => {
+            strings.push(match);
+            return `###STRING_${strings.length - 1}###`;
+        });
 
-        // Keywords
-        html = html.replace(/\b(from|import|def|class|return|as|for|in|if|else|elif|while|try|except|finally|with|is|not|and|or|pass|break|continue|lambda|yield|True|False|None)\b/g, '<span class="keyword">$&</span>');
-
-        // Functions and methods
-        html = html.replace(/\b([a-zA-Z_]\w*)\s*(?=\()/g, '<span class="function">$1</span>');
-
-        // Classes (after 'class' keyword)
-        html = html.replace(/(class\s+)(\w+)/g, '$1<span class="class">$2</span>');
+        // Step 3: Now highlight everything else (no conflicts possible)
 
         // Decorators
-        html = html.replace(/^(\s*@\w+)/gm, '<span class="decorator">$1</span>');
+        html = html.replace(/^(\s*)(@\w+)/gm, '$1<span class="decorator">$2</span>');
+
+        // Keywords
+        html = html.replace(/\b(from|import|def|class|return|as|for|in|if|else|elif|while|try|except|finally|with|is|not|and|or|pass|break|continue|lambda|yield|True|False|None)\b/g,
+            '<span class="keyword">$&</span>');
+
+        // Functions
+        html = html.replace(/\b([a-zA-Z_]\w*)\s*(?=\()/g, '<span class="function">$1</span>');
 
         // Numbers
-        html = html.replace(/\b(\d+\.?\d*)\b/g, '<span class="number">$1</span>');
+        html = html.replace(/\b(\d+\.?\d*)\b/g, '<span class="number">$&</span>');
+
+        // Step 4: Restore strings and comments with styling
+        html = html.replace(/###STRING_(\d+)###/g, (match, index) => {
+            return `<span class="string">${strings[index]}</span>`;
+        });
+
+        html = html.replace(/###COMMENT_(\d+)###/g, (match, index) => {
+            return `<span class="comment">${comments[index]}</span>`;
+        });
 
         return html;
     }
@@ -101,4 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error("One or more essential elements for the interactive demo are missing.");
     }
+
+    // Highlight extension card code snippets
+    document.querySelectorAll('.extension-code pre code').forEach(el => {
+        el.innerHTML = betterHighlight(el.textContent);
+    });
 });
