@@ -2,8 +2,8 @@ from mesqual.visualizations import TimeSeriesDashboardGenerator
 
 # Fetch cross-border trade balances
 flag = SolutionFlag(
-    Enums.Col.Countries,
-    Enums.Out.TradeBalPerPartner
+    Enums.Collection.Countries,
+    Enums.SystemOut.TradeBalPerPartner
 )
 data = study.scen_comp.fetch(flag)
 data = data.xs('net_exp', level='variable', axis=1)

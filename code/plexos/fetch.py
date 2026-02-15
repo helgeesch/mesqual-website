@@ -1,7 +1,7 @@
-# Fetch trade balances across all scenarios
+# Fetch trade balances (MultiIndex df) across all scenarios
 flag = SolutionFlag(
-    Enums.Col.Countries,
-    Enums.Out.TradeBalPerPartner
+    Enums.Collection.Countries,
+    Enums.SystemOut.TradeBalPerPartner
 )
 
 print(f'All scenarios → MultiIndex DataFrame')

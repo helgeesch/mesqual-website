@@ -26,7 +26,7 @@ Two-pane layout with a preview area below:
 - **Right pane**: Analysis scripts — tabs switch between `fetch`, `heat`, `line`, `map`
 - **Preview pane**: Shows the HTML output (`previews/{pipeline}.html`) for the selected right-pane tab
 
-The JS loads snippets from `code/{setup}/{pipeline}.py` based on active tabs. Analysis snippets are mini-versions (≤15 lines) of real scripts from `studies/study_04_pypsa_eur_example/scripts/b_post_processing/`.
+The JS loads snippets from `code/{setup}/{pipeline}.py` based on active tabs. Analysis snippets are mini-versions (≤15 lines) of real scripts from `studies/study_02_pypsa_eur_example/scripts/b_post_processing/`.
 
 ## Tech Stack
 
@@ -40,4 +40,4 @@ The JS loads snippets from `code/{setup}/{pipeline}.py` based on active tabs. An
 - Code snippets must stay ≤15 lines and be self-explanatory
 - PyPSA and Plexos snippets for the same tab should be structurally identical — only `import`, dataset class, and flag names differ
 - Preview HTML files are standalone (inline styles or load `../css/style.css`)
-- Private interfaces (`euphemia`, `mesqual-euphemia`, `mesqual-plexos`) must never appear in public content
+- Private interfaces must never appear in public content. public packages (mesqual, mesqual-vanilla-studies, mesqual-pypsa, mesqual-plexos, mesqual-antares, mesqual-repset, mesqual-ai) may be mentioned in public.

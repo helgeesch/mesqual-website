@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // GitHub source mapping
-    const githubBaseUrl = 'https://github.com/helgeesch/mesqual-vanilla-studies/blob/main/studies/study_04_pypsa_eur_example/scripts/b_post_processing/';
+    const githubBaseUrl = 'https://github.com/helgeesch/mesqual-vanilla-studies/blob/main/studies/study_02_pypsa_eur_example/scripts/b_post_processing/';
     const githubSourceMap = {
         fetch: 'b_simple_fetch.py',
         heat: 'c_trade_balance_heatmap_dashboard.py',
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Preview zoom levels per pipeline tab
     const previewScaleMap = {
         fetch: 0.8,
-        heat: 0.6,
-        line: 0.6,
-        map: 0.5,
+        heat: 0.45,
+        line: 0.8,
+        map: 0.65,
     };
 
     // DOM Elements

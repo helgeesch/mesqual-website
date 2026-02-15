@@ -1,4 +1,4 @@
-# Fetch trade balances across all scenarios
+# Fetch trade balances (MultiIndex df) across all scenarios
 flag = 'countries_t.trade_balance_per_partner'
 
 print(f'All scenarios → MultiIndex DataFrame')

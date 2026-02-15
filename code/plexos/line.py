@@ -3,8 +3,8 @@ from mesqual.utils.pandas_utils import flatten_df
 
 # Same data as heatmap, different visualization
 flag = SolutionFlag(
-    Enums.Col.Countries,
-    Enums.Out.TradeBalPerPartner
+    Enums.Collection.Countries,
+    Enums.SystemOut.TradeBalPerPartner
 )
 data = study.scen.fetch(flag)
 data = data.xs('net_exp', level='variable', axis=1)

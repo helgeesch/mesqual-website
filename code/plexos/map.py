@@ -5,12 +5,12 @@ from mesqual.visualizations import folviz, valmap
 
 # Define KPIs: mean prices per country, mean flows per border
 price_flag = SolutionFlag(
-    Enums.Col.CountrieBorders,
-    Enums.Out.VolWeightedPrice
+    Enums.Collection.CountrieBorders,
+    Enums.SystemOut.VolWeightedPrice
 )
 flow_flag = SolutionFlag(
-    Enums.Col.CountrieBorders,
-    Enums.Out.NetFlow
+    Enums.Collection.CountrieBorders,
+    Enums.SystemOut.NetFlow
 )
 kpi_defs = (
     kpis.FlagAggKPIBuilder()
@@ -40,7 +40,8 @@ arrow_gen = folviz.ArrowIconGenerator(folviz.ArrowIconFeatureResolver(
 ))
 
 # Build map — one togglable layer per scenario
-map_gen = MapGenerator()
-map_gen.add_legends_to_map(m)
-map_gen.add_non_physical_interconnector_cables(study, m)
-map_gen.generate_and_add_feature_groups_to_map(study, m,show='first')
+m = folium.Map()
+map_build = MapBuilder()
+map_build.add_legends_to_map(m)
+map_build.add_non_physical_interconnector_cables(study, m)
+map_build.generate_and_add_feature_groups_to_map(study, m,show='first')
