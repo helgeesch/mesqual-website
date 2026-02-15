@@ -4,14 +4,9 @@ from mesqual import kpis
 from mesqual.visualizations import folviz, valmap
 
 # Define KPIs: mean prices per country, mean flows per border
-price_flag = SolutionFlag(
-    Enums.Collection.CountrieBorders,
-    Enums.SystemOut.VolWeightedPrice
-)
-flow_flag = SolutionFlag(
-    Enums.Collection.CountrieBorders,
-    Enums.SystemOut.NetFlow
-)
+price_flag = SolutionFlag(Enums.Collection.CountrieBorders, Enums.SystemOut.VolWeightedPrice)
+flow_flag = SolutionFlag(Enums.Collection.CountrieBorders, Enums.SystemOut.NetFlow)
+
 kpi_defs = (
     kpis.FlagAggKPIBuilder()
     .for_flags([price_flag, flow_flag])

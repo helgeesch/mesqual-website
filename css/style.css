@@ -70,11 +70,15 @@ p {
     gap: 25px;
 }
 .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.2s;
 }
+.nav-links a svg { flex-shrink: 0; }
 .nav-links a:hover {
     color: var(--primary-color);
 }
@@ -151,6 +155,26 @@ h1 {
 .code-pane:first-child {
     border-right: 1px solid #333;
 }
+/* Pane labels */
+.pane-label {
+    padding: 10px 15px 0;
+    background: #2a2a2a;
+}
+.pane-label-title {
+    display: block;
+    color: #bbb;
+    font-size: 1.0rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.pane-label-subtitle {
+    display: block;
+    color: #666;
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: 3px;
+}
+
 .tabs {
     padding: 10px 15px;
     background: #2a2a2a;
@@ -181,7 +205,7 @@ h1 {
 }
 .code-content {
     padding: 15px;
-    height: 300px;
+    height: 350px;
     overflow: auto;
 }
 .console-header {
@@ -205,7 +229,7 @@ h1 {
     font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
     font-size: 14px;
     line-height: 1.5;
-    white-space: pre-wrap;
+    white-space: pre;
     color: #d4d4d4;
 }
 .code-content pre code .comment {
@@ -213,14 +237,87 @@ h1 {
     font-style: italic;
 }
 .preview-pane {
-    height: 500px;
     background-color: #fff;
     overflow: hidden;
+}
+.preview-pane.collapsed {
+    display: none;
+}
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 15px;
+    background: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+}
+.preview-label {
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 500;
+}
+.preview-expand-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 10px;
+    cursor: pointer;
+    color: #666;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-family: var(--font-family);
+    transition: all 0.2s;
+}
+.preview-expand-btn:hover {
+    border-color: #999;
+    color: #333;
+    background: #e8e8e8;
+}
+.preview-content {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+}
+.preview-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.preview-spinner.active {
+    display: flex;
+}
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #e0e0e0;
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.spinner-text {
+    font-size: 0.78rem;
+    color: #999;
 }
 .preview-pane iframe {
     border: none;
     transform-origin: 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
     /* scale set dynamically per pipeline tab via JS */
+}
+.preview-pane iframe.loaded {
+    opacity: 1;
 }
 /* Python Syntax Highlighting */
 code .keyword { color: #C586C0; }
@@ -232,6 +329,68 @@ code .number { color: #B5CEA8; }
 code .decorator { color: #D7BA7D; }
 code .operator { color: #d4d4d4; }
 
+/* Typewriter cursor */
+code.typing::after {
+    content: '\258C';
+    color: #d4d4d4;
+    animation: blink-cursor 0.6s step-end infinite;
+    font-weight: 100;
+}
+@keyframes blink-cursor {
+    50% { opacity: 0; }
+}
+
+/* Fullscreen overlay */
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.fullscreen-overlay.active {
+    display: flex;
+}
+.fullscreen-content {
+    width: 95vw;
+    height: 92vh;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+}
+.fullscreen-overlay iframe {
+    border: none;
+    background: white;
+    transform-origin: 0 0;
+}
+.fullscreen-close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+    line-height: 1;
+}
+.fullscreen-close:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
 
 /* --- General Sections --- */
 .section { padding: 80px 0; }
@@ -422,6 +581,51 @@ code .operator { color: #d4d4d4; }
     line-height: 1.4;
 }
 
+/* Building blocks icon — 2×2 colored grid */
+.arch-blocks-icon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    width: 36px;
+}
+.arch-blocks-icon span {
+    aspect-ratio: 1;
+    border-radius: 3px;
+}
+.arch-blocks-icon span:nth-child(1) { background: var(--primary-color); }
+.arch-blocks-icon span:nth-child(2) { background: #7dd3c7; }
+.arch-blocks-icon span:nth-child(3) { background: #7dd3c7; }
+.arch-blocks-icon span:nth-child(4) { background: #b2ece3; }
+
+/* Framework scaffold icon — outlined rectangle with crosshair */
+.arch-frame-icon {
+    width: 40px;
+    height: 32px;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    position: relative;
+}
+.arch-frame-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    right: 5px;
+    height: 1px;
+    background: var(--primary-color);
+    opacity: 0.4;
+}
+.arch-frame-icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    bottom: 5px;
+    width: 1px;
+    background: var(--primary-color);
+    opacity: 0.4;
+}
+
 /* Extension cards */
 .extension-heading {
     text-align: center;
@@ -513,10 +717,16 @@ code .operator { color: #d4d4d4; }
     box-shadow: var(--card-shadow);
 }
 .study-card h4 { margin: 0 0 10px; }
-.study-card a {
+.study-card a:not(.button) {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
+}
+.study-card-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 12px;
 }
 
 /* --- Other Projects Section --- */
@@ -605,7 +815,7 @@ footer {
     .container-side-by-side { flex-direction: column; text-align: center; }
     .arch-container { flex-direction: column; }
     .arch-api-line {
-        flex-direction: row;
+        flex-direction: row-reverse;
         min-width: auto;
         padding: 5px 0;
     }

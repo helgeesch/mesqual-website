@@ -6,6 +6,7 @@ from mesqual.visualizations import folviz, valmap
 # Define KPIs: mean prices per country, mean flows per border
 price_flag = 'countries_t.vol_weighted_marginal_price'
 flow_flag = 'country_borders_t.net_flow'
+
 kpi_defs = (
     kpis.FlagAggKPIBuilder()
     .for_flags([price_flag, flow_flag])

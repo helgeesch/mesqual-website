@@ -2,17 +2,14 @@ import plotly.express as px
 from mesqual.utils.pandas_utils import flatten_df
 
 # Same data as heatmap, different visualization
-flag = SolutionFlag(
-    Enums.Collection.Countries,
-    Enums.SystemOut.TradeBalPerPartner
-)
+flag = SolutionFlag(Enums.Collection.Countries, Enums.SystemOut.TradeBalPerPartner)
 data = study.scen.fetch(flag)
-data = data.xs('net_exp', level='variable', axis=1)
 data = flatten_df(data)
+data = data[data['primary_country'] == 'BE']  # demo BE only
 
 # Interactive line chart with range slider
 fig = px.line(
-    data[data['primary_country'] == 'BE'],
+    data,
     x='snapshot', y='value',
     color='partner_country', line_dash='dataset',
     title='BE Net-Positions [GW]',

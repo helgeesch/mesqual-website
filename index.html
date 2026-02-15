@@ -22,8 +22,8 @@
                 <a href="#modules">Modules</a>
                 <a href="#extensibility">Extend</a>
                 <a href="#example-studies">Example Studies</a>
-                <a href="https://docs.mesqual.io" target="_blank">Docs</a>
-                <a href="https://github.com/helgeesch/mesqual" target="_blank">Get Started</a>
+                <a href="https://docs.mesqual.io" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
+                <a href="https://github.com/helgeesch/mesqual" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>GitHub</a>
             </div>
         </div>
     </nav>
@@ -34,7 +34,7 @@
             <h1>A Pythonic framework for energy scenario analysis</h1>
             <p class="subtitle">A modular library for comparing energy market scenarios with powerful quantitative and qualitative analysis tools.</p>
             <div class="hero-cta">
-                 <a href="#" class="button button-primary button-large button-with-icon">
+                 <a href="https://docs.mesqual.io/mesqual-study-01/" target="_blank" rel="noopener noreferrer" class="button button-primary button-large button-with-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24ZM11.2318 17.5255C10.9469 17.5255 10.712 17.29 10.712 16.9745V7.02551C10.712 6.71 10.9469 6.47451 11.2318 6.47451C11.5167 6.47451 11.7516 6.71 11.7516 7.02551V16.9745C11.7516 17.29 11.5167 17.5255 11.2318 17.5255ZM15.7551 14.2882C15.4702 14.2882 15.2353 14.0527 15.2353 13.7372V10.2628C15.2353 9.94726 15.4702 9.71178 15.7551 9.71178C16.04 9.71178 16.2749 9.94726 16.2749 10.2628V13.7372C16.2749 14.0527 16.04 14.2882 15.7551 14.2882ZM6.70863 14.2882C6.42373 14.2882 6.18884 14.0527 6.18884 13.7372V10.2628C6.18884 9.94726 6.42373 9.71178 6.70863 9.71178C6.99352 9.71178 7.22841 9.94726 7.22841 10.2628V13.7372C7.22841 14.0527 6.99352 14.2882 6.70863 14.2882Z"/></svg>
                     Try now in Colab
                 </a>
@@ -50,6 +50,10 @@
                     <div class="code-panes">
                         <!-- Left Pane -->
                         <div class="code-pane">
+                            <div class="pane-label">
+                                <span class="pane-label-title">&#9312; Setup StudyManager</span>
+                                <span class="pane-label-subtitle">Feed it with scenarios from any platform interface</span>
+                            </div>
                             <div class="tabs" id="setup-tabs">
                                 <button class="tab-button active" data-setup="pypsa">PyPSA</button>
                                 <button class="tab-button" data-setup="plexos">Plexos</button>
@@ -61,6 +65,10 @@
                         </div>
                         <!-- Right Pane -->
                         <div class="code-pane">
+                            <div class="pane-label">
+                                <span class="pane-label-title">&#9313; Analyze with MESQUAL</span>
+                                <span class="pane-label-subtitle">Same API and modules across all platforms &mdash; only the setup flags change</span>
+                            </div>
                             <div class="tabs" id="pipeline-tabs">
                                 <button class="tab-button active" data-pipeline="fetch">Fetch</button>
                                 <button class="tab-button" data-pipeline="heat">Heatmap</button>
@@ -76,8 +84,21 @@
                         </div>
                     </div>
                     <!-- Preview Pane -->
-                    <div class="preview-pane">
-                        <iframe id="preview-frame" src="about:blank"></iframe>
+                    <div class="preview-pane collapsed" id="preview-pane">
+                        <div class="preview-header">
+                            <span class="preview-label">Output Preview</span>
+                            <button id="fullscreen-btn" class="preview-expand-btn" title="Fullscreen preview">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                                Fullscreen
+                            </button>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-spinner" id="preview-spinner">
+                                <div class="spinner"></div>
+                                <span class="spinner-text">Loading preview&hellip;</span>
+                            </div>
+                            <iframe id="preview-frame" src="about:blank"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,8 +124,8 @@
                         </div>
                         <p>Central orchestrator with three-tier access: scenarios, comparisons, and unified views.</p>
                         <div class="module-links">
-                            <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                            <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                            <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/study_manager.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/study_manager/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                         </div>
                     </div>
                     <div class="module-card">
@@ -119,8 +140,8 @@
                     </div>
                     <p>"Everything is a Dataset" &mdash; unified <code>.fetch(flag)</code> interface with pluggable, platform-agnostic interpreters.</p>
                     <div class="module-links">
-                         <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                         <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/datasets/__init__.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/datasets/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                     </div>
                     </div>
                     <div class="module-card">
@@ -135,8 +156,8 @@
                     </div>
                     <p>Energy-domain utilities for border visualizations, area accounting, trade balances, model mixing and much more.</p>
                     <div class="module-links">
-                        <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                        <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/energy_data_handling/__init__.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/energy_data_handling/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                     </div>
                     </div>
                     <div class="module-card">
@@ -150,8 +171,8 @@
                     </div>
                     <p>Build faceted heatmap and line dashboards from MultiIndex DataFrames using Plotly.</p>
                     <div class="module-links">
-                         <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                         <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/visualizations/__init__.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/visualization/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                     </div>
                     </div>
                     <div class="module-card">
@@ -166,8 +187,8 @@
                     </div>
                     <p>Create rich, interactive geospatial maps with KPI-driven styling and animated flows.</p>
                     <div class="module-links">
-                         <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                         <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/visualizations/folium_viz_system/__init__.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/visualization/folium_viz_system/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                     </div>
                     </div>
                     <div class="module-card">
@@ -182,8 +203,8 @@
                     </div>
                     <p>Fluent builder API for defining, computing, and filtering KPIs across scenarios.</p>
                     <div class="module-links">
-                        <a href="https://github.com/helgeesch/mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        <a href="https://docs.mesqual.io" target="_blank">Docs &rarr;</a>
+                        <a href="https://github.com/helgeesch/mesqual/blob/main/mesqual/kpis/__init__.py" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        <a href="https://docs.mesqual.io/mesqual-package-documentation/api_reference/kpis/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                     </div>
                     </div>
                 </div>
@@ -241,6 +262,23 @@
                         <div class="arch-api-label"><code>.fetch(flag)</code></div>
                         <div class="arch-api-arrow"></div>
                         <div class="arch-api-sublabel">Same API<br>across all layers</div>
+                    </div>
+                    <div class="arch-api-line">
+                        <div class="arch-api-label">
+                            <div class="arch-blocks-icon">
+                                <span></span><span></span>
+                                <span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="arch-api-arrow"></div>
+                        <div class="arch-api-sublabel">Same modules<br>across all layers</div>
+                    </div>
+                    <div class="arch-api-line">
+                        <div class="arch-api-label">
+                            <div class="arch-frame-icon"></div>
+                        </div>
+                        <div class="arch-api-arrow"></div>
+                        <div class="arch-api-sublabel">Same framework<br>for any study</div>
                     </div>
                 </div>
 
@@ -415,23 +453,33 @@ study.scen.add_kpis_from_definitions_to_all_child_datasets([defs])</code></pre>
                 <div class="text-content">
                     <h3>Explore hands-on example studies</h3>
                     <p>The <code>mesqual-vanilla-studies</code> repository demonstrates MESQUAL's capabilities through practical examples and serves as a template for organizing your own energy modeling studies.</p>
-                    <a href="https://github.com/helgeesch/mesqual-vanilla-studies" class="button button-secondary">View Repository</a>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies" target="_blank" class="button button-secondary button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View Repository</a>
+                        <a href="https://docs.mesqual.io" target="_blank" class="button button-secondary button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Documentation</a>
+                    </div>
                 </div>
                 <div class="studies-cards">
                     <div class="study-card">
                         <h4>Study 01: Intro to MESQUAL</h4>
                         <p>Uses a PyPSA example network to introduce the core MESQUAL modules and framework.</p>
-                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_01_intro_to_mesqual" target="_blank">View Study &rarr;</a>
+                        <div class="study-card-links">
+                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_01_intro_to_mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                            <a href="https://docs.mesqual.io/mesqual-study-01/" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
+                        </div>
                     </div>
                     <div class="study-card">
-                        <h4>Study 02: PLEXOS Example</h4>
-                        <p>Shows the platform-agnostic nature of MESQUAL using PLEXOS simulation outputs.</p>
-                         <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_03_plexos_example" target="_blank">View Study &rarr;</a>
-                    </div>
-                    <div class="study-card">
-                        <h4>Study 04: PyPSA Eur Example</h4>
+                        <h4>Study 02: PyPSA Eur Example</h4>
                         <p>Shows typical study workflow including custom data, variables and visuals.</p>
-                         <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_02_pypsa_eur_example" target="_blank">View Study &rarr;</a>
+                        <div class="study-card-links">
+                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_02_pypsa_eur_example" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        </div>
+                    </div>
+                    <div class="study-card">
+                        <h4>Study 03: PLEXOS Example</h4>
+                        <p>Shows the platform-agnostic nature of MESQUAL using PLEXOS simulation outputs.</p>
+                        <div class="study-card-links">
+                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_03_plexos_example" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -483,6 +531,14 @@ study.scen.add_kpis_from_definitions_to_all_child_datasets([defs])</code></pre>
     <script>
         lucide.createIcons();
     </script>
+    <!-- Fullscreen Overlay -->
+    <div class="fullscreen-overlay" id="fullscreen-overlay">
+        <button class="fullscreen-close" id="fullscreen-close" title="Close fullscreen">&times;</button>
+        <div class="fullscreen-content">
+            <iframe id="fullscreen-frame" src="about:blank"></iframe>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
