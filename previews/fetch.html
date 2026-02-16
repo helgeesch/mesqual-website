@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch preview</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="margin: 0; padding: 0; height: 100%;">
+
+<div class="code-content" style="height: 100%; display: flex; flex-direction: column; padding: 0;">
+    <div class="console-header">
+        <i data-lucide="terminal" style="width: 14px; height: 14px;"></i>
+        <span style="margin-left: 8px;">python3</span>
+    </div>
+    <div class="console-body" style="flex: 1; overflow: auto;">
+        <pre><code id="setup-code">
+==================================================
+All scenarios → MultiIndex DataFrame
+
+dataset                 base                ...  low_res
+primary_country           FI                ...       DE
+partner_country           EE                ...       DK
+variable             net_exp      exp  imp  ...  net_exp  exp      imp
+snapshot                                    ...
+2009-01-01 00:00:00  1015.95  1015.95  0.0  ... -3554.96  0.0  3554.96
+2009-01-01 01:00:00  1015.95  1015.95  0.0  ... -3588.00  0.0  3588.00
+2009-01-01 02:00:00  1015.95  1015.95  0.0  ... -3887.58  0.0  3887.58
+...                      ...      ...  ...  ...      ...  ...      ...
+2009-12-31 21:00:00  1015.90  1015.90  0.0  ... -1215.47  0.0  1215.47
+2009-12-31 22:00:00  1015.90  1015.90  0.0  ...  -485.80  0.0   485.80
+2009-12-31 23:00:00  1015.90  1015.90  0.0  ...  -108.56  0.0   108.56
+[8760 rows x 1404 columns]
+
+==================================================
+Individual scenario
+
+primary_country           FI                ...       DE
+partner_country           EE                ...       DK
+variable             net_exp      exp  imp  ...  net_exp  exp      imp
+snapshot                                    ...
+2009-01-01 00:00:00  1015.95  1015.95  0.0  ... -3330.14  0.0  3330.14
+2009-01-01 01:00:00  1015.95  1015.95  0.0  ... -3415.13  0.0  3415.13
+2009-01-01 02:00:00  1015.95  1015.95  0.0  ... -3364.46  0.0  3364.46
+...                      ...      ...  ...  ...      ...  ...      ...
+2009-12-31 21:00:00  1015.90  1015.90  0.0  ...  -769.27  0.0   769.27
+2009-12-31 22:00:00  1015.90  1015.90  0.0  ... -1135.18  0.0  1135.18
+2009-12-31 23:00:00  1015.90  1015.90  0.0  ... -1721.66  0.0  1721.66
+[8760 rows x 468 columns]
+
+==================================================
+All comparisons (deltas) → same interface
+
+dataset             high_res vs base               ... low_res vs base
+primary_country                   FI               ...              DE
+partner_country                   EE               ...              DK
+variable                     net_exp     exp  imp  ...         net_exp  exp      imp
+snapshot                                           ...
+2009-01-01 00:00:00             0.01    0.01  0.0  ...         -224.82  0.0   224.82
+2009-01-01 01:00:00            -0.00   -0.00  0.0  ...         -172.87  0.0   172.87
+2009-01-01 02:00:00            -0.00   -0.00  0.0  ...         -523.12  0.0   523.12
+...                              ...     ...  ...  ...             ...  ...      ...
+2009-12-31 21:00:00             0.09    0.09  0.0  ...         -446.20  0.0   446.20
+2009-12-31 22:00:00             0.09    0.09  0.0  ...          649.37  0.0  -649.37
+2009-12-31 23:00:00             0.09    0.09  0.0  ...         1613.09  0.0 -1613.09
+[8760 rows x 936 columns]
+
+==================================================
+Combined fetch: scenarios + comparisons (additional Index-level)
+
+type                scenario                ...      comparison
+dataset                 base                ... low_res vs base
+primary_country           FI                ...              DE
+partner_country           EE                ...              DK
+variable             net_exp      exp  imp  ...         net_exp  exp      imp
+snapshot                                    ...
+2009-01-01 00:00:00  1015.95  1015.95  0.0  ...         -224.82  0.0   224.82
+2009-01-01 01:00:00  1015.95  1015.95  0.0  ...         -172.87  0.0   172.87
+2009-01-01 02:00:00  1015.95  1015.95  0.0  ...         -523.12  0.0   523.12
+...                      ...      ...  ...  ...             ...  ...      ...
+2009-12-31 21:00:00  1015.90  1015.90  0.0  ...         -446.20  0.0   446.20
+2009-12-31 22:00:00  1015.90  1015.90  0.0  ...          649.37  0.0  -649.37
+2009-12-31 23:00:00  1015.90  1015.90  0.0  ...         1613.09  0.0 -1613.09
+[8760 rows x 2340 columns]
+        </code></pre>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
