@@ -414,8 +414,8 @@ borders = gen.enhance_with_geometry(borders, geo_calc)
         res = dataset.fetch('countries_t.res_generation')
         return (res.sum() / gen.sum() * 100).to_dict()
 
-def = AnnualizedRESShare(kpi_flag='countries_t.annualized_res_gen')
-study.scen.add_kpis_from_definitions_to_all_child_datasets([defs])</code></pre>
+kpi_def = AnnualizedRESShare(kpi_flag='countries_t.annualized_res_gen')
+study.scen.add_kpis_from_definitions_to_all_child_datasets([kpi_def])</code></pre>
                         </div>
                     </div>
 <!--                    <div class="extension-card">-->
