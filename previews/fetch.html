@@ -20,7 +20,7 @@
     <div class="console-body" style="flex: 1; overflow: auto;">
         <pre><code id="setup-code">
 ==================================================
-All scenarios → MultiIndex DataFrame
+Results: All scenarios → MultiIndex DataFrame
 
 dataset                 base                ...  low_res
 primary_country           FI                ...       DE
@@ -37,7 +37,7 @@ snapshot                                    ...
 [8760 rows x 1404 columns]
 
 ==================================================
-Individual scenario
+Results: Individual scenario
 
 primary_country           FI                ...       DE
 partner_country           EE                ...       DK
@@ -53,7 +53,17 @@ snapshot                                    ...
 [8760 rows x 468 columns]
 
 ==================================================
-All comparisons (deltas) → same interface
+Model: Individual scenario
+                                                  geometry           projection_point
+Country
+AL       POLYGON ((20.06396 42.54727, 20.10352 42.52466...   POINT (20.00418 41.1821)
+AT       POLYGON ((16.95312 48.59883, 16.94883 48.58857...  POINT (14.75207 47.70073)
+...                                                    ...                        ...
+SI       POLYGON ((13.7 46.52026, 13.74395 46.51431, 13...  POINT (14.61274 46.14888)
+SK       POLYGON ((17.14736 48.00596, 17.08594 48.03955...  POINT (19.63901 48.68137)
+
+==================================================
+Results: All comparisons (deltas) → same interface
 
 dataset             high_res vs base               ... low_res vs base
 primary_country                   FI               ...              DE
@@ -70,7 +80,7 @@ snapshot                                           ...
 [8760 rows x 936 columns]
 
 ==================================================
-Combined fetch: scenarios + comparisons (additional Index-level)
+Results: Combined fetch: scenarios + comparisons (additional Index-level)
 
 type                scenario                ...      comparison
 dataset                 base                ... low_res vs base
