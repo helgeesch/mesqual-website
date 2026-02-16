@@ -1,4 +1,5 @@
-# Fetch trade balances (MultiIndex df) across all scenarios
+# Same .fetch() call — any level, any flag type, any platform.
+
 result_flag = 'countries_t.trade_balance_per_partner'
 model_flag = 'countries'
 

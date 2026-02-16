@@ -1,4 +1,5 @@
-# Fetch trade balances (MultiIndex df) across all scenarios
+# Same .fetch() call — any level, any flag type, any platform.
+
 result_flag = SolutionFlag(Enums.Collection.Country, Enums.SystemOut.TradeBalPerPartner)
 model_flag = ModelFlag(Enums.Collection.Country)
 
