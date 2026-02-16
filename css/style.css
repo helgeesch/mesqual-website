@@ -95,10 +95,35 @@ h1 {
     max-width: 800px;
     margin: 0 auto 20px;
 }
+.hero-pills {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto 28px;
+    flex-wrap: wrap;
+}
+.hero-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--primary-color-dark);
+    background: rgba(0, 169, 143, 0.08);
+    border: 1px solid rgba(0, 169, 143, 0.25);
+    border-radius: 20px;
+    letter-spacing: 0.01em;
+}
 .subtitle {
     font-size: 1.25rem;
     max-width: 700px;
+    margin: 0 auto 12px;
+}
+.hero-tagline {
+    font-size: 1.05rem;
+    max-width: 600px;
     margin: 0 auto 40px;
+    color: var(--text-color-light);
+    font-weight: 400;
 }
 
 /* --- Buttons --- */
@@ -149,6 +174,7 @@ h1 {
     border-bottom: 1px solid #333;
 }
 .code-pane {
+    position: relative;
     flex: 1;
     min-width: 0;
 }
@@ -442,9 +468,7 @@ code.typing::after {
 }
 .module-classes {
     margin-bottom: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    line-height: 2.2;
 }
 .module-classes code {
     background: var(--section-highlight-bg);
@@ -452,6 +476,8 @@ code.typing::after {
     padding: 4px 8px;
     font-size: 0.85rem;
     color: var(--text-color);
+    white-space: nowrap;
+    margin-right: 8px;
 }
 .module-card p {
     font-size: 1rem;
@@ -752,19 +778,26 @@ code.typing::after {
     font-size: 1.1rem;
 }
 
-/* --- GitHub Source Icon --- */
-.github-source-icon {
+/* --- Code Source Links (top-right of code pane) --- */
+.code-source-links {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    z-index: 1;
+}
+.code-source-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
-    color: #666;
+    color: #555;
     padding: 4px;
     border-radius: 4px;
     transition: color 0.2s;
     text-decoration: none;
 }
-.github-source-icon:hover {
+.code-source-icon:hover {
     color: #fff;
 }
 

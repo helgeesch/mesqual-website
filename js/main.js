@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
         line: 'c_trade_balance_line_fig.py',
         map: 'd_netpos_price_map.py',
     };
+    const docsBaseUrl = 'https://docs.mesqual.io/mesqual-package-documentation/api_reference/';
+    const docsSourceMap = {
+        fetch: 'datasets/',
+        heat: 'visualization/',
+        line: 'visualization/',
+        map: 'visualization/folium_viz_system/',
+    };
     const previewScaleMap = {
         fetch: 0.8,
         heat: 0.45,
@@ -35,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewSpinner  = document.getElementById('preview-spinner');
     const previewFrame    = document.getElementById('preview-frame');
     const githubLink      = document.getElementById('github-source-link');
+    const docsLink        = document.getElementById('docs-source-link');
     const fullscreenOverlay = document.getElementById('fullscreen-overlay');
     const fullscreenFrame   = document.getElementById('fullscreen-frame');
     const fullscreenBtn      = document.getElementById('fullscreen-btn');
@@ -216,10 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --------------- GitHub link ---------------
-    function updateGithubLink() {
+    // --------------- Source links ---------------
+    function updateSourceLinks() {
         if (githubLink && state.pipeline && githubSourceMap[state.pipeline]) {
             githubLink.href = githubBaseUrl + githubSourceMap[state.pipeline];
+        }
+        if (docsLink && state.pipeline && docsSourceMap[state.pipeline]) {
+            docsLink.href = docsBaseUrl + docsSourceMap[state.pipeline];
         }
     }
 
@@ -257,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (next === state.pipeline) return;
 
         state.pipeline = next;
-        updateGithubLink();
+        updateSourceLinks();
         updateActiveTabs();
 
         // Cancel any pending preview load from previous tab switch
