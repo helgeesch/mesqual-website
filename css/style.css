@@ -1111,15 +1111,15 @@ footer {
     border: 1px solid var(--border-color);
     box-shadow: var(--card-shadow);
 }
-.agent-step h4 { margin: 0 0 12px; }
+.agent-step h3 { font-size: 1.1rem; margin: 0 0 12px; }
 .agent-step p { margin: 12px 0 8px; font-size: 0.95rem; }
-.agent-cmd { margin: 0; padding: 12px 16px; font-size: 0.85rem; white-space: pre-wrap; word-break: break-word; }
+.agent-cmd { margin: 0; padding: 12px 16px; font-size: 0.8rem; white-space: pre; overflow-x: auto; }
 .agent-link { text-align: center; margin-top: 28px; }
 .agent-link a { color: var(--primary-color-dark); font-weight: 600; }
 .deprecated-badge {
     display: inline-block;
     padding: 2px 8px;
-    font-size: 0.65rem;
+    font-size: 0.72rem;
     font-weight: 600;
     color: #8a4b00;
     background: #fff3e0;
@@ -1139,4 +1139,3 @@ footer {
 }
 .ecosystem-note { font-size: 0.8rem; padding: 8px 12px; margin: 0 0 16px; }
 .deprecation-notice a, .ecosystem-note a { color: var(--primary-color-dark); font-weight: 600; }
-.study-card-deprecated { opacity: 0.75; }

@@ -11,6 +11,7 @@ Showcases MESQUAL's platform-agnostic multi-scenario analysis through an interac
 ```
 mesqual-website/
 ├── index.html              # Single-page landing site
+├── llms.txt                # Short description for agents, links to docs.mesqual.io/llms.txt
 ├── css/style.css           # All styling (Inter font, dark code theme, responsive)
 ├── js/main.js              # Tab switching, code loading, preview iframe management
 ├── code/
@@ -27,6 +28,8 @@ Two-pane layout with a preview area below:
 - **Preview pane**: Shows the HTML output (`previews/{pipeline}.html`) for the selected right-pane tab
 
 The JS loads snippets from `code/{setup}/{pipeline}.py` based on active tabs. Analysis snippets are mini-versions (≤15 lines) of real scripts from `studies/study_02_pypsa_eur_example/scripts/b_post_processing/`.
+
+The page also has an "Onboard Your Agent" section (`#agents`) with the skill install commands, and a deprecation notice on the studies and ecosystem sections (the 0.x packages `mesqual-vanilla-studies` and `mesqual-pypsa`).
 
 ## Tech Stack
 
