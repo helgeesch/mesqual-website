@@ -1137,5 +1137,6 @@ footer {
     border-radius: 4px;
     font-size: 0.95rem;
 }
+.pip-line { display: block; margin-top: 6px; word-break: break-all; font-size: 0.85em; }
 .ecosystem-note { font-size: 0.8rem; padding: 8px 12px; margin: 0 0 16px; }
 .deprecation-notice a, .ecosystem-note a { color: var(--primary-color-dark); font-weight: 600; }

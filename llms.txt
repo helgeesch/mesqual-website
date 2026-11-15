@@ -1,6 +1,6 @@
 # MESQUAL
 
-> MESQUAL is an open-source Python framework for multi-scenario analysis of energy market simulations. It compares, visualizes and analyzes results across scenarios and modeling platforms. Its API is made for humans and agents alike: anyone can understand, navigate and analyze a study.
+> mesqual is an open-source Python framework for multi-scenario analysis of energy market simulations. It compares, visualizes and analyzes results across scenarios and modeling platforms. Its API is made for humans and agents alike: anyone can understand, navigate and analyze a study.
 
 Install: `pip install mesqual`
 
