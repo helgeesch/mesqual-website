@@ -29,7 +29,7 @@ Two-pane layout with a preview area below:
 
 The JS loads snippets from `code/{setup}/{pipeline}.py` based on active tabs. Analysis snippets are mini-versions (≤15 lines) of real scripts from `studies/study_02_pypsa_eur_example/scripts/b_post_processing/`.
 
-The page also has an "Onboard Your Agent" section (`#agents`) with the skill install commands, and a deprecation notice on the studies and ecosystem sections (the 0.x packages `mesqual-vanilla-studies` and `mesqual-pypsa`).
+The page also has an "Onboard Your Agent" section (`#agents`) with the skill install commands, and a "humans and agents" block in the Project Family card.
 
 ## Tech Stack
 

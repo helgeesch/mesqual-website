@@ -23,7 +23,6 @@
                 <a href="#agents">Agents</a>
                 <a href="#modules">Modules</a>
                 <a href="#extensibility">Extend</a>
-                <a href="#example-studies">Studies (0.x)</a>
                 <a href="https://docs.mesqual.io" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Docs</a>
                 <a href="https://github.com/helgeesch/mesqual" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>GitHub</a>
             </div>
@@ -33,7 +32,7 @@
     <header class="hero">
         <div class="container">
             <h1>The Pythonic Framework for Energy Scenario Comparison &amp; Analysis</h1>
-            <p class="subtitle">MESQUAL &mdash; Modular Energy Scenario Comparison Library for Quantitative and Qualitative Analysis</p>
+            <p class="subtitle">mesqual &mdash; Modular Energy Scenario Comparison Library for Quantitative and Qualitative Analysis</p>
             <div class="hero-pills">
                 <span class="hero-pill">Fully Modular</span>
                 <span class="hero-pill">Platform-Independent</span>
@@ -123,6 +122,7 @@
                 <div class="section-header">
                     <h2>Onboard Your Agent</h2>
                     <p>The mesqual package ships a skill that teaches an agent how to understand, navigate and analyze a mesqual study. Install it in your project folder.</p>
+                    <p class="agent-why">Agents work better with a consistent framework. An agent that writes study code against a stable, documented API (fetch, flags, collections, maps) produces consistent code that a human can review. Without a framework, each study gets its own one-off pandas code, and nobody can audit that many codebases. mesqual gives humans and agents the same framework.</p>
                 </div>
                 <div class="agent-steps">
                     <div class="agent-step">
@@ -136,7 +136,7 @@
                         <pre class="agent-cmd"><code>python -m mesqual.skills install . --claude</code></pre>
                     </div>
                 </div>
-                <p class="agent-link"><a href="https://docs.mesqual.io/use-with-agents/" target="_blank" rel="noopener noreferrer">Read the guide: use MESQUAL with agents</a></p>
+                <p class="agent-link"><a href="https://docs.mesqual.io/use-with-agents/" target="_blank" rel="noopener noreferrer">Read the guide: use mesqual with agents</a></p>
             </div>
         </section>
 
@@ -262,7 +262,7 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Make It Yours</h2>
-                    <p>MESQUAL's layered architecture lets you leverage the full generic framework while freely adding study-specific logic &mdash; custom data sources, variables, KPIs, and visual themes.</p>
+                    <p>mesqual's layered architecture lets you leverage the full generic framework while freely adding study-specific logic &mdash; custom data sources, variables, KPIs, and visual themes.</p>
                 </div>
 
                 <!-- Three-Tier Architecture Diagram -->
@@ -289,15 +289,14 @@
                             </div>
                             <p>Connect your modeling tool &mdash; or build your own adapter in a few lines</p>
                             <div class="arch-badges">
-                                <code>mesqual-pypsa</code>
                                 <code>mesqual-plexos</code>
-                                <code>mesqual-???</code>
+                                <code>your platform package</code>
                             </div>
                         </div>
                         <div class="arch-layer arch-core">
                             <div class="arch-label">
                                 <i data-lucide="box"></i>
-                                <strong>MESQUAL Core</strong>
+                                <strong>mesqual Core</strong>
                             </div>
                             <p>Platform-agnostic foundation &mdash; StudyManager, KPIs, Visualizations, Utilities</p>
                             <div class="arch-badges">
@@ -494,45 +493,6 @@ study.scen.add_kpis_from_definitions_to_all_child_datasets([kpi_def])</code></pr
             </div>
         </section>
 
-        <section id="example-studies" class="section">
-            <div class="container">
-            <div class="container-side-by-side">
-                <div class="text-content">
-                    <h3>Example studies <span class="deprecated-badge">deprecated, mesqual 0.x only</span></h3>
-                    <p>The <code>mesqual-vanilla-studies</code> repository holds example studies for mesqual 0.x.</p>
-                    <p class="deprecation-notice"><strong>Deprecated.</strong> These example studies work only with mesqual 0.x. For mesqual 2, start with the quickstart and guides at <a href="https://docs.mesqual.io" target="_blank" rel="noopener noreferrer">docs.mesqual.io</a>, which run on the synthetic platform <code>mesqual.testing</code>. To stay on 0.x, install from git: <code class="pip-line">pip install "mesqual @ git+https://github.com/helgeesch/mesqual@v0.1.0"</code></p>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <a href="https://github.com/helgeesch/mesqual-vanilla-studies" target="_blank" class="button button-small button-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View Repository (0.x)</a>
-                        <a href="https://docs.mesqual.io" target="_blank" class="button button-small button-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>Documentation</a>
-                    </div>
-                </div>
-                <div class="studies-cards">
-                    <div class="study-card study-card-deprecated">
-                        <h4>Study 01: Intro to MESQUAL</h4>
-                        <p>Uses a PyPSA example network to introduce the core MESQUAL modules and framework.</p>
-                        <div class="study-card-links">
-                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_01_intro_to_mesqual" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        </div>
-                    </div>
-                    <div class="study-card study-card-deprecated">
-                        <h4>Study 02: PyPSA Eur Example</h4>
-                        <p>Shows typical study workflow including custom data, variables and visuals.</p>
-                        <div class="study-card-links">
-                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_02_pypsa_eur_example" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        </div>
-                    </div>
-                    <div class="study-card study-card-deprecated">
-                        <h4>Study 03: PLEXOS Example</h4>
-                        <p>Shows the platform-agnostic nature of MESQUAL using PLEXOS simulation outputs.</p>
-                        <div class="study-card-links">
-                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies/tree/main/studies/study_03_plexos_example" target="_blank" class="button button-secondary button-small button-with-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>View code</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-
         <section class="section">
             <div class="container">
                 <div class="section-header">
@@ -545,16 +505,14 @@ study.scen.add_kpis_from_definitions_to_all_child_datasets([kpi_def])</code></pr
                         <div class="project-header">
                             <img class="project-logo" src="https://raw.githubusercontent.com/helgeesch/mesqual/18fe3fc20bace115a116555b2872d57925698e48/assets/logo-turq.svg" alt="" width="24" height="24">
                             <h3><a href="https://mesqual.io" target="_blank" class="project-card-link">mesqual</a></h3>
-                            <span class="project-badge">+ ecosystem</span>
                         </div>
                         <p>A Pythonic framework for energy scenario comparison and quantitative analysis. Platform-agnostic, fully modular, and built to extend.</p>
-                        <div class="project-ecosystem">
-                            <a href="https://github.com/helgeesch/mesqual-vanilla-studies" target="_blank" class="ecosystem-link"><code>mesqual-vanilla-studies</code></a> <span class="deprecated-badge">deprecated</span><br>
-                            <a href="https://github.com/helgeesch/mesqual-pypsa" target="_blank" class="ecosystem-link"><code>mesqual-pypsa</code></a> <span class="deprecated-badge">deprecated</span><br>
-                            <a href="https://github.com/helgeesch/mesqual-ai" target="_blank" class="ecosystem-link"><code>mesqual-ai</code></a>
-                            <span class="coming-soon-badge">coming soon</span>
+                        <div class="human-agent" role="img" aria-label="Built for humans and agents alike">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+                            <span class="human-agent-plus">+</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 8V4"></path><circle cx="12" cy="3.5" r="1"></circle><circle cx="9" cy="14" r="1.2"></circle><circle cx="15" cy="14" r="1.2"></circle><path d="M2 13v2M22 13v2"></path></svg>
+                            <p>Built for humans and agents alike</p>
                         </div>
-                        <p class="ecosystem-note">Deprecated packages work only with mesqual 0.x. For mesqual 2, start with the quickstart and guides at <a href="https://docs.mesqual.io" target="_blank" rel="noopener noreferrer">docs.mesqual.io</a>, which run on the synthetic platform <code>mesqual.testing</code>. To stay on 0.x, install from git: <code class="pip-line">pip install "mesqual @ git+https://github.com/helgeesch/mesqual@v0.1.0"</code></p>
                         <div class="project-links">
                             <a href="https://mesqual.io" target="_blank" class="project-link" title="Website">
                                 <img src="https://raw.githubusercontent.com/helgeesch/mesqual/18fe3fc20bace115a116555b2872d57925698e48/assets/logo-turq.svg" alt="mesqual" width="20" height="20">
