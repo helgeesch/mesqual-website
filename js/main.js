@@ -6,13 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --------------- Config ---------------
-    const githubBaseUrl = 'https://github.com/helgeesch/mesqual-vanilla-studies/blob/main/studies/study_02_pypsa_eur_example/scripts/b_post_processing/';
-    const githubSourceMap = {
-        fetch: 'b_simple_fetch.py',
-        heat: 'c_trade_balance_heatmap_dashboard.py',
-        line: 'c_trade_balance_line_fig.py',
-        map: 'd_netpos_price_map.py',
-    };
     const docsBaseUrl = 'https://docs.mesqual.io/mesqual-package-documentation/api_reference/';
     const docsSourceMap = {
         fetch: 'datasets/',
@@ -41,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewPane     = document.getElementById('preview-pane');
     const previewSpinner  = document.getElementById('preview-spinner');
     const previewFrame    = document.getElementById('preview-frame');
-    const githubLink      = document.getElementById('github-source-link');
     const docsLink        = document.getElementById('docs-source-link');
     const fullscreenOverlay = document.getElementById('fullscreen-overlay');
     const fullscreenFrame   = document.getElementById('fullscreen-frame');
@@ -226,9 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --------------- Source links ---------------
     function updateSourceLinks() {
-        if (githubLink && state.pipeline && githubSourceMap[state.pipeline]) {
-            githubLink.href = githubBaseUrl + githubSourceMap[state.pipeline];
-        }
         if (docsLink && state.pipeline && docsSourceMap[state.pipeline]) {
             docsLink.href = docsBaseUrl + docsSourceMap[state.pipeline];
         }
